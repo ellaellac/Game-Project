@@ -2,6 +2,7 @@
 const startButton = document.getElementById("startButton");
 const player = document.getElementById("player");
 const apple = document.getElementById("apple");
+const hearts = document.querySelectorAll(".game__chance");
 
 //Moving Player
 player.style.position = "relative";
@@ -21,3 +22,45 @@ const movingPlayer = (event) => {
 };
 
 document.addEventListener("keydown", movingPlayer);
+
+//Falling Objects
+apple.style.position = "relative";
+apple.style.top = "0px";
+
+const fallingApples = () => {
+  detectCollision();
+  const position = parseInt(apple.style.top);
+  console.log(position);
+  const borderBottom = apple.parentElement.clientHeight - apple.height * 2;
+
+  if (position <= borderBottom) {
+    apple.style.top = position + 10 + "px";
+    apple.style.left = Math.floor(Math.random() * 15) + "px";
+  } else if (position >= borderBottom) {
+    apple.style.top = "0px";
+  }
+};
+
+const callFallingApples = () => {
+  setInterval(fallingApples, 100);
+};
+startButton.addEventListener("click", callFallingApples);
+
+//Collision
+// console.log(apple.x);
+// console.log(player.x);
+// console.log(player.width);
+// console.log(apple.width);
+
+const detectCollision = () => {
+  if (
+    apple.x + apple.width >= player.x &&
+    apple.x <= player.x + player.width &&
+    apple.y + apple.height >= player.y &&
+    apple.y <= player.y + player.height
+  ) {
+    console.log("collision");
+  }
+};
+
+detectCollision();
