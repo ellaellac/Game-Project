@@ -95,3 +95,43 @@
   top: 325px;
 }
 
+@media screen and (min-width: 820px) {
+  body {
+    display: flex;
+    column-gap: 40px;
+  }
+
+  .game__box {
+    width: 460px;
+    height: 700px;
+  }
+
+  .game__bar {
+    width: 440px;
+    height: 63px;
+  }
+
+  .game__decoration {
+    width: 112px;
+    height: 112px;
+  }
+
+  .game__chance {
+    margin: 3px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .game__objects {
+    width: 63px;
+    height: 63px;
+  }
+
+  .game__player {
+    border: 1px solid red;
+    width: 90px;
+    height: 85px;
+    position: relative;
+    top: 480px;
+  }
+}
