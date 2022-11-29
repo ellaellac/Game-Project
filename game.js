@@ -52,6 +52,8 @@ startButton.addEventListener("click", callFallingApples);
 // console.log(player.width);
 // console.log(apple.width);
 
+let heartsLeft = 3;
+
 const detectCollision = () => {
   if (
     apple.x + apple.width >= player.x &&
@@ -60,7 +62,16 @@ const detectCollision = () => {
     apple.y <= player.y + player.height
   ) {
     console.log("collision");
+    console.log((heartsLeft = heartsLeft - 1));
+    deductHearts(heartsLeft);
   }
 };
 
-detectCollision();
+const deductHearts = (heartsLeft) => {
+  hearts[heartsLeft].style.display = "none";
+};
+
+// detectCollision();
+
+// hearts[1].style.display = "none";
+// hearts[0].style.display = "none";
