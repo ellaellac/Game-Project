@@ -42,8 +42,19 @@ const fallingApples = () => {
 };
 
 const callFallingApples = () => {
-  setInterval(fallingApples, 100);
+  console.log("start");
+  startButton.removeEventListener("click", callFallingApples);
+  startButton.addEventListener("click", stopFallingApples);
+  return (fallingApplesInterval = setInterval(fallingApples, 100));
 };
+
+const stopFallingApples = () => {
+  console.log("stop");
+  startButton.removeEventListener("click", stopFallingApples);
+  startButton.addEventListener("click", callFallingApples);
+  return clearInterval(fallingApplesInterval);
+};
+
 startButton.addEventListener("click", callFallingApples);
 
 //Collision
