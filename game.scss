@@ -149,7 +149,7 @@ $buttonColour:#FF6464;
     
     .game__objects{
         width: 440px;  
-        height: 500px;
+        height: 617px;
     }
 
     .game__apples{
@@ -161,7 +161,8 @@ $buttonColour:#FF6464;
         border: 1px solid red;
         width: 90px;
         height: 85px;
-        position: relative;
-        top: 480px;
+        position: fixed;
+        top:-80px;
     }
+    
 }
