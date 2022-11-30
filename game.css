@@ -68,24 +68,27 @@
   width: 310px;
   height: 45px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .game__decoration {
+  position: absolute;
   width: 80px;
   height: 80px;
 }
 
 .game__chance {
+  position: relative;
+  left: 90px;
   margin: 2px;
-  width: 40px;
-  height: 40px;
+  width: 37px;
+  height: 37px;
 }
 
 .game__objects {
   border: 1px solid red;
   width: 310px;
-  height: 435px;
+  height: 440px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -102,7 +105,7 @@
   width: 80px;
   height: 76px;
   position: fixed;
-  top: -70px;
+  top: -68px;
 }
 
 @media screen and (min-width: 820px) {
@@ -127,6 +130,8 @@
   }
 
   .game__chance {
+    position: relative;
+    left: 130px;
     margin: 3px;
     width: 50px;
     height: 50px;
@@ -134,7 +139,7 @@
 
   .game__objects {
     width: 440px;
-    height: 617px;
+    height: 625px;
   }
 
   .game__apples {
@@ -147,6 +152,6 @@
     width: 90px;
     height: 85px;
     position: fixed;
-    top: -80px;
+    top: -77px;
   }
 }
