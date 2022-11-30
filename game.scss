@@ -23,7 +23,7 @@ $buttonColour:#FF6464;
 }
 
 .description__topic{
-    margin-left:20px;
+    margin:40px 0 40px 20px ;
     font-family:$topicFont;
     font-size: 60px;
 }
@@ -35,7 +35,7 @@ $buttonColour:#FF6464;
 }
 
 .description__rules{
-    margin:30px 0 0 20px;
+    margin:40px 0 0 20px;
     font-family:$rulesFont;
     font-size: 36px;
 }
@@ -98,6 +98,16 @@ $buttonColour:#FF6464;
 }
 
 .game__objects{
+    border: 1px solid black;
+    width: 310px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.game__apples{
+    margin: 0 3px 0 3px;
+    border: 1px solid red;
     width: 45px;
     height: 45px;
 }
@@ -137,7 +147,12 @@ $buttonColour:#FF6464;
         height: 50px;
     }
     
+        
     .game__objects{
+        width: 440px;  
+    }
+
+    .game__apples{
         width: 63px;
         height: 63px;
     }
