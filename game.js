@@ -27,6 +27,13 @@ document.addEventListener("keydown", movingPlayer);
 apple.style.position = "relative";
 apple.style.top = "0px";
 
+//Apple Reset
+
+const resetApples = () => {
+  apple.style.top = "0px";
+};
+
+//Falling Apples
 const fallingApples = () => {
   detectCollision();
   const position = parseInt(apple.style.top);
@@ -35,9 +42,9 @@ const fallingApples = () => {
 
   if (position <= borderBottom) {
     apple.style.top = position + 10 + "px";
-    apple.style.left = Math.floor(Math.random() * 15) + "px";
+    apple.style.left = Math.floor(Math.random() * 20) + "px";
   } else if (position >= borderBottom) {
-    apple.style.top = "0px";
+    resetApples();
   }
 };
 
@@ -45,6 +52,7 @@ const callFallingApples = () => {
   console.log("start");
   startButton.removeEventListener("click", callFallingApples);
   startButton.addEventListener("click", stopFallingApples);
+  startButton.innerText = "Pause";
   return (fallingApplesInterval = setInterval(fallingApples, 100));
 };
 
@@ -52,6 +60,7 @@ const stopFallingApples = () => {
   console.log("stop");
   startButton.removeEventListener("click", stopFallingApples);
   startButton.addEventListener("click", callFallingApples);
+  startButton.innerText = "Start";
   return clearInterval(fallingApplesInterval);
 };
 
@@ -74,12 +83,9 @@ const detectCollision = () => {
   ) {
     console.log("collision");
     console.log((heartsLeft = heartsLeft - 1));
+    resetApples();
     deductHearts(heartsLeft);
   }
-};
-
-const deductHearts = (heartsLeft) => {
-  hearts[heartsLeft].style.display = "none";
 };
 
 // detectCollision();
