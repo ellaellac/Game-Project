@@ -1,10 +1,11 @@
-//Variables
+//1. Variables//
 const startButton = document.getElementById("startButton");
 const player = document.getElementById("player");
-const apple = document.getElementById("apple");
+const apple = document.querySelectorAll(".game__apples");
 const hearts = document.querySelectorAll(".game__chance");
+const queen = document.querySelector(".game__decoration");
 
-//Moving Player
+//2. Moving Player//
 player.style.position = "relative";
 player.style.left = "0px";
 
@@ -23,31 +24,32 @@ const movingPlayer = (event) => {
 
 document.addEventListener("keydown", movingPlayer);
 
-//Falling Objects
-apple.style.position = "relative";
-apple.style.top = "0px";
+//3. Falling Objects//
 
-//Apple Reset
-
+//Reset Apple Position
 const resetApples = () => {
   apple.style.top = "0px";
 };
 
 //Falling Apples
+apple.style.position = "relative";
+apple.style.top = "0px";
+
 const fallingApples = () => {
   detectCollision();
   const position = parseInt(apple.style.top);
   console.log(position);
-  const borderBottom = apple.parentElement.clientHeight - apple.height * 2;
+  const borderBottom = apple.parentElement.clientHeight - apple.height;
 
   if (position <= borderBottom) {
     apple.style.top = position + 10 + "px";
-    apple.style.left = Math.floor(Math.random() * 20) + "px";
+    apple.style.left = Math.floor(Math.random() * 10) + "px";
   } else if (position >= borderBottom) {
     resetApples();
   }
 };
 
+//Start Btn
 const callFallingApples = () => {
   console.log("start");
   startButton.removeEventListener("click", callFallingApples);
@@ -56,6 +58,7 @@ const callFallingApples = () => {
   return (fallingApplesInterval = setInterval(fallingApples, 100));
 };
 
+//Pause Btn
 const stopFallingApples = () => {
   console.log("stop");
   startButton.removeEventListener("click", stopFallingApples);
@@ -66,11 +69,7 @@ const stopFallingApples = () => {
 
 startButton.addEventListener("click", callFallingApples);
 
-//Collision
-// console.log(apple.x);
-// console.log(player.x);
-// console.log(player.width);
-// console.log(apple.width);
+//4. Collision
 
 let heartsLeft = 3;
 
@@ -87,7 +86,19 @@ const detectCollision = () => {
     deductHearts(heartsLeft);
   }
 };
+// Lost Chance
+const deductHearts = (heartsLeft) => {
+  if (heartsLeft > 0) {
+    hearts[heartsLeft].style.display = "none";
+  } else {
+    alert("Game Over");
+  }
+};
 
+// console.log(apple.x);
+// console.log(player.x);
+// console.log(player.width);
+// console.log(apple.width);
 // detectCollision();
 
 // hearts[1].style.display = "none";
