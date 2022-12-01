@@ -86,7 +86,6 @@
 }
 
 .game__objects {
-  border: 1px solid red;
   width: 310px;
   height: 440px;
   display: flex;
@@ -94,17 +93,33 @@
 }
 
 .game__apples {
+  display: none;
   margin: 0 3px 0 3px;
   width: 45px;
   height: 45px;
 }
 
 .game__player {
-  border: 1px solid red;
   width: 80px;
   height: 76px;
   position: fixed;
   top: -68px;
+}
+
+#congratsImg {
+  width: 280px;
+  height: 225px;
+}
+
+#game__win {
+  font-family: "Nerko One", cursive;
+  font-size: 48px;
+  line-height: 24px;
+  position: relative;
+  color: #FF6464;
+  top: -400px;
+  left: 30px;
+  display: none;
 }
 
 @media screen and (min-width: 820px) {
@@ -147,10 +162,25 @@
   }
 
   .game__player {
-    border: 1px solid red;
     width: 90px;
     height: 85px;
     position: fixed;
     top: -77px;
+  }
+
+  #congratsImg {
+    width: 560px;
+    height: 450px;
+  }
+
+  #game__win {
+    font-family: "Nerko One", cursive;
+    font-size: 88px;
+    line-height: 24px;
+    position: relative;
+    color: #FF6464;
+    top: -650px;
+    left: -30px;
+    display: none;
   }
 }

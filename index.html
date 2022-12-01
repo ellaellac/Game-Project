@@ -8,7 +8,7 @@
     <title>Falling Objects Game</title>
 </head>
 <body>
-
+    <!-- Rules -->
     <section class="description">
         <h1 class="description__topic">Falling Objects Game</h1>
         <h3 class="description__intro">
@@ -30,8 +30,8 @@
 
         <button id="startButton">Start</button>
     </section>
-
-    <section class="game">
+    <!-- Game Area -->
+    <section id="game">
         <div class="game__box">
             <div class="game__bar">
                 <img class="game__decoration" src="./asset/Queen1.png" alt="Queen">
@@ -48,10 +48,12 @@
                 <img class="game__player" id="player" src="./asset/Snow_White1.png" alt="Snow White">
             </div>
         </div>
+        <!-- Congrats Img -->
+        <div id="game__win">
+            <img id="congratsImg" src="./asset/endWin.png" alt="Won Game">
+            <p>Congratulations!</p>
+            </div>
     </section>     
-   
-
-
 
 <!-- external script  -->
 <script src="game.js"></script>
