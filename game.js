@@ -25,65 +25,58 @@ const movingPlayer = (event) => {
 document.addEventListener("keydown", movingPlayer);
 
 //3. Falling Objects//
-
 //Reset Apple Position
-const resetApples = () => {
-  apple.style.top = "0px";
+const resetApples = (i) => {
+  apple[i].style.top = "0px";
+  console.log("reset");
 };
 
 //Falling Apples
-apple.style.position = "relative";
-apple.style.top = "0px";
+for (let i = 0; i < apple.length; i++) {
+  apple[i].style.position = "relative";
+  apple[i].style.top = "0px";
+}
 
 const fallingApples = () => {
-  detectCollision();
-  const position = parseInt(apple.style.top);
-  console.log(position);
-  const borderBottom = apple.parentElement.clientHeight - apple.height;
-
-  if (position <= borderBottom) {
-    apple.style.top = position + 10 + "px";
-    apple.style.left = Math.floor(Math.random() * 10) + "px";
-  } else if (position >= borderBottom) {
-    resetApples();
+  for (let i = 0; i < apple.length; i++) {
+    const position = parseInt(apple[i].style.top);
+    const borderBottom = apple[i].parentElement.clientHeight - apple[i].height;
+    console.log(position);
+    //apple falling animation
+    if (position <= borderBottom) {
+      apple[i].style.top = position + Math.floor(Math.random() * 20) + "px";
+      apple[i].style.left = Math.floor(Math.random() * (10 + 10) - 10) + "px";
+      apple[i].style.transform = `rotate(${Math.floor(
+        Math.random() * (20 + 20) - 20
+      )}deg)`;
+    }
+    //reset apple position
+    else if (position >= borderBottom) {
+      resetApples(i);
+    }
+    //detect Collision
+    detectCollision();
   }
 };
 
-//Start Btn
-const callFallingApples = () => {
-  console.log("start");
-  startButton.removeEventListener("click", callFallingApples);
-  startButton.addEventListener("click", stopFallingApples);
-  startButton.innerText = "Pause";
-  return (fallingApplesInterval = setInterval(fallingApples, 100));
-};
-
-//Pause Btn
-const stopFallingApples = () => {
-  console.log("stop");
-  startButton.removeEventListener("click", stopFallingApples);
-  startButton.addEventListener("click", callFallingApples);
-  startButton.innerText = "Start";
-  return clearInterval(fallingApplesInterval);
-};
-
-startButton.addEventListener("click", callFallingApples);
-
-//4. Collision
+//4. Collision //
 
 let heartsLeft = 3;
 
 const detectCollision = () => {
-  if (
-    apple.x + apple.width >= player.x &&
-    apple.x <= player.x + player.width &&
-    apple.y + apple.height >= player.y &&
-    apple.y <= player.y + player.height
-  ) {
-    console.log("collision");
-    console.log((heartsLeft = heartsLeft - 1));
-    resetApples();
-    deductHearts(heartsLeft);
+  for (let i = 0; i < apple.length; i++) {
+    if (
+      apple[i].x + apple[i].width >= player.x &&
+      apple[i].x <= player.x + player.width &&
+      apple[i].y + apple[i].height >= player.y &&
+      apple[i].y <= player.y + player.height
+    ) {
+      console.log("collision");
+      resetApples(i);
+
+      console.log((heartsLeft = heartsLeft - 1));
+      deductHearts(heartsLeft);
+    }
   }
 };
 // Lost Chance
@@ -95,11 +88,30 @@ const deductHearts = (heartsLeft) => {
   }
 };
 
-// console.log(apple.x);
-// console.log(player.x);
-// console.log(player.width);
-// console.log(apple.width);
-// detectCollision();
+//5. Start Btn
+const restart = () => {
+  for (let i = 0; i < apple.length; i++) {
+    apple[i].style.position = "relative";
+    apple[i].style.top = "0px";
+  }
+};
 
-// hearts[1].style.display = "none";
-// hearts[0].style.display = "none";
+const callFallingApples = () => {
+  console.log("start");
+  startButton.removeEventListener("click", callFallingApples);
+  startButton.addEventListener("click", stopFallingApples);
+  startButton.innerText = "Restart";
+  return (fallingApplesInterval = setInterval(fallingApples, 400));
+};
+
+//6. Pause Btn
+const stopFallingApples = () => {
+  console.log("stop");
+  startButton.removeEventListener("click", stopFallingApples);
+  startButton.addEventListener("click", callFallingApples);
+  startButton.innerText = "Start";
+  restart();
+  return clearInterval(fallingApplesInterval);
+};
+
+startButton.addEventListener("click", callFallingApples);
