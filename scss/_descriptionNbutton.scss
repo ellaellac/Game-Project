@@ -1,0 +1,52 @@
+@use"./variables"as*;
+
+//Description 
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Noto+Serif+Khojki&family=Patrick+Hand&display=swap');
+
+.description{
+    display: flex;
+    flex-direction: column;
+}
+
+.description__topic{
+    margin:40px 0 40px 20px ;
+    font-family:$topicFont;
+    font-size: 60px;
+}
+
+.description__intro{
+    margin-left:20px;
+    font-family:$introFont;
+    font-size: 22px;
+}
+
+.description__rules{
+    margin:40px 0 0 20px;
+    font-family:$rulesFont;
+    font-size: 36px;
+}
+
+.description__rules--smallerFont{
+    margin:10px 0 0 40px;
+    font-family:$rulesFont;
+    font-size: 24px;
+}
+
+//Button
+#startButton{
+    background-color:$buttonColour ;
+    border-radius: 30px;
+    box-shadow:-3px 5px grey;
+    color: white;
+    font-family: $topicFont;
+    font-size: 36px;
+    margin-top: 40px;
+    padding:15px 20px 15px 20px;
+    &:hover{
+        cursor:pointer;
+    }
+    &:active{
+        transform: scale(0.95);
+    }
+    align-self: center;
+}
