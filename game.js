@@ -125,7 +125,7 @@ const callFallingApples = () => {
   }
   //Congrats Img disappear
   congratImg.style.display = "none";
-  //Start counting Time -- 5 sec
+  //Start counting Time -- 30 sec
   gameTimeFunction();
   //Call apples to fall
   return (fallingApplesInterval = setInterval(fallingApples, 400));
