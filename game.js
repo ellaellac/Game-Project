@@ -14,9 +14,9 @@ const movingPlayer = (event) => {
   const position = parseInt(player.style.left);
   const borderEnd = player.parentElement.clientWidth - player.width;
   if (event.code === "ArrowLeft" && position >= 0) {
-    player.style.left = position - 10 + "px"; //console.log("ArrowLeft");
+    player.style.left = position - 10 + "px";
   } else if (event.code === "ArrowRight" && position < borderEnd) {
-    player.style.left = position + 10 + "px"; //console.log("ArrowRight");
+    player.style.left = position + 10 + "px";
   } else {
     console.log("other keys pressed");
   }
@@ -44,8 +44,8 @@ const fallingApples = () => {
     console.log(position);
     //apple falling animation
     if (position <= borderBottom) {
-      apple[i].style.top = position + Math.floor(Math.random() * 30) + "px";
-      apple[i].style.left = Math.floor(Math.random() * (10 + 10) - 10) + "px";
+      apple[i].style.top = position + Math.floor(Math.random() * 40) + "px";
+      apple[i].style.left = Math.floor(Math.random() * (15 + 15) - 15) + "px";
       apple[i].style.transform = `rotate(${Math.floor(
         Math.random() * (20 + 20) - 20
       )}deg)`;
@@ -108,10 +108,13 @@ const restart = () => {
     apple[i].style.display = "none";
   }
 };
-
-//6. Start
+//6. Control Running Time
+const gameTimeFunction = () => {
+  return (gameTime = setTimeout(gameWon, 30000));
+};
+//7. Start
 const callFallingApples = () => {
-  console.log("start");
+  console.log("Start");
   //Btn Change to STOP
   startButton.removeEventListener("click", callFallingApples);
   startButton.addEventListener("click", stopFallingApples);
@@ -122,31 +125,34 @@ const callFallingApples = () => {
   }
   //Congrats Img disappear
   congratImg.style.display = "none";
-  // Set Time -- 30 seconds
-  setTimeout(gameWon, 30000);
+  //Start counting Time -- 5 sec
+  gameTimeFunction();
   //Call apples to fall
-  return (fallingApplesInterval = setInterval(fallingApples, 200));
+  return (fallingApplesInterval = setInterval(fallingApples, 400));
 };
 
-//7. STOP Btn
+//8. STOP Btn
 const stopFallingApples = () => {
-  console.log("stop");
+  console.log("Stop");
   //Btn Change to Start
   startButton.removeEventListener("click", stopFallingApples);
   startButton.addEventListener("click", callFallingApples);
   startButton.innerText = "Start";
   //Apples back to initial position & hearts fill
   restart();
-  //Stop falling apples
-  clearInterval(fallingApplesInterval);
   //clear Time countdown
-  return clearTimeout(setTimeout(gameWon, 30000));
+  clearTimeout(gameTime);
+  //Stop falling apples
+  return clearInterval(fallingApplesInterval);
 };
 
 startButton.addEventListener("click", callFallingApples);
 
-// 7. Set TimeOut
+// 9. Game Won
 const gameWon = () => {
   congratImg.style.display = "unset";
   stopFallingApples();
+  //clear Time countdown
+  clearTimeout(gameTime);
+  console.log("GAME END");
 };
